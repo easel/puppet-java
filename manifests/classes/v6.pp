@@ -52,7 +52,7 @@ class java::v6 {
   exec {"set default jvm":
     command => $operatingsystem ? {
       'RedHat'         => "update-java-alternatives --set java-6-sun",
-      /Debian|Ubuntu/  => "update-alternatives --set java /usr/lib/jvm/java-6-sun/jre/bin/java || true",
+      /Debian|Ubuntu|ubuntu/  => "update-alternatives --set java /usr/lib/jvm/java-6-sun/jre/bin/java || true",
     },
     unless => 'test $(readlink /etc/alternatives/java) = /usr/lib/jvm/java-6-sun/jre/bin/java',
     require => Package["sun-java6-bin"],
