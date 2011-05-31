@@ -14,6 +14,9 @@ class java {
         default: { fail "java::v6 not available for ${operatingsystem}/${lsbdistcodename}" }
       }
     }
+    CentOS: {
+      include java::v6
+    }
     default: { notice "Unsupported operatingsystem ${operatingsystem}" }
   }
 
