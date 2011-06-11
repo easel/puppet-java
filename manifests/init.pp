@@ -14,6 +14,7 @@ class java {
         default: { fail "java::v6 not available for ${operatingsystem}/${lsbdistcodename}" }
       }
     }
+    RedHat,
     CentOS: {
       include java::v6
     }

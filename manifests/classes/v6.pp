@@ -36,6 +36,7 @@ class java::v6 {
   }
 
   case $operatingsystem {
+    'redhat',
     'centos': {
        include yum::repo::jpackage::generic
        include yum::repo::jpackage::rhel
@@ -68,8 +69,8 @@ class java::v6 {
   # || true is just a temporary workaround !
   exec {"set default jvm":
     command => $operatingsystem ? {
-      'CentOS'		      => "update-alternatives --set java /usr/lib/jvm/jre-1.6.0-openjdk.x86_64/bin/java",
-      'RedHat'                => "update-java-alternatives --set java-6-sun",
+      'CentOS'     => "update-alternatives --set java /usr/lib/jvm/jre-1.6.0-openjdk.x86_64/bin/java",
+      'RedHat'     => "update-alternatives --set java /usr/lib/jvm/jre-1.6.0-openjdk.x86_64/bin/java",
       /Debian|Ubuntu|ubuntu/  => "update-alternatives --set java /usr/lib/jvm/java-6-sun/jre/bin/java || true",
     },
     unless => 'test $(readlink /etc/alternatives/java) = /usr/lib/jvm/java-6-sun/jre/bin/java',
